@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details - Midnight Chocolate 🍫</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__wrapper">
+      <a href="index.html" class="nav__brand">🍫 Midnight Chocolate</a>
+      <div class="nav__links">
+        <a href="index.html">Home</a>
+        <a href="collection.html">Collection</a>
+        <a href="story.html">Our Story</a>
+        <a href="cart.html" class="nav__cart">
+          🛒 Cart <span class="cart-count">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Product Detail Section -->
+  <section class="product-detail">
+    <div class="product-detail__wrapper">
+      <!-- Back Button -->
+      <a href="collection.html" class="back-btn">← Back to Collection</a>
+
+      <div class="product-detail__grid">
+        <!-- Product Image -->
+        <div class="product-detail__image-container">
+          <img id="productImage" src="" alt="Product" class="product-detail__image">
+          <div class="product-detail__badges">
+            <span class="badge badge--premium" id="productBadge"></span>
+          </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="product-detail__info">
+          <div class="product-detail__meta">
+            <span id="productCategory" class="pill">Category</span>
+            <div class="rating">
+              <span id="productRating" class="rating__stars">★★★★★</span>
+              <span id="productReviewCount" class="rating__count">(125 reviews)</span>
+            </div>
+          </div>
+
+          <h1 id="productName" class="product-detail__title">Product Name</h1>
+
+          <div class="product-detail__price">
+            <span id="productPrice" class="price">$0.00</span>
+            <span class="price--original" id="productOriginalPrice">$0.00</span>
+          </div>
+
+          <p id="productDescription" class="product-detail__description">
+            Product description goes here
+          </p>
+
+          <!-- Product Specs -->
+          <div class="product-specs">
+            <div class="spec">
+              <span class="spec__label">🌍 Origin</span>
+              <span id="productOrigin" class="spec__value">Ecuador</span>
+            </div>
+            <div class="spec">
+              <span class="spec__label">⚖️ Weight</span>
+              <span id="productWeight" class="spec__value">100g</span>
+            </div>
+            <div class="spec">
+              <span class="spec__label">🔥 Cocoa %</span>
+              <span id="productCocoa" class="spec__value">72%</span>
+            </div>
+            <div class="spec">
+              <span class="spec__label">✨ Type</span>
+              <span id="productType" class="spec__value">Dark Chocolate</span>
+            </div>
+          </div>
+
+          <!-- Ingredients -->
+          <div class="product-ingredients">
+            <h3>🧂 Ingredients</h3>
+            <p id="productIngredients">Cocoa mass, cocoa butter, sugar, vanilla</p>
+          </div>
+
+          <!-- Flavor Notes -->
+          <div class="product-notes">
+            <h3>👅 Flavor Notes</h3>
+            <div class="flavor-tags" id="productTags">
+              <span class="flavor-tag">Nutty</span>
+              <span class="flavor-tag">Fruity</span>
+              <span class="flavor-tag">Smooth</span>
+            </div>
+          </div>
+
+          <!-- Add to Cart -->
+          <div class="product-detail__actions">
+            <div class="quantity-selector">
+              <button class="qty-btn" id="qtyMinus">−</button>
+              <input type="number" id="quantity" value="1" min="1" max="10" class="qty-input">
+              <button class="qty-btn" id="qtyPlus">+</button>
+            </div>
+            <button id="addToCartBtn" class="btn btn--primary btn--large">
+              🛒 Add to Cart
+            </button>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="product-trust">
+            <div class="trust-item">
+              <span class="trust-icon">✓</span>
+              <span class="trust-text">30-day Money Back</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon">🚚</span>
+              <span class="trust-text">Free Shipping Over $50</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon">🔒</span>
+              <span class="trust-text">Secure Checkout</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reviews Section -->
+      <div class="product-reviews">
+        <h2>🌟 Customer Reviews</h2>
+        <div class="reviews-list" id="reviewsList">
+          <div class="review-card">
+            <div class="review-header">
+              <div class="review-avatar">😍</div>
+              <div class="review-info">
+                <p class="review-name">Sarah M.</p>
+                <span class="review-rating">★★★★★</span>
+              </div>
+            </div>
+            <p class="review-text">"Absolutely divine! The melting experience is unlike anything I've tasted. Worth every penny!"</p>
+            <span class="review-date">2 weeks ago</span>
+          </div>
+
+          <div class="review-card">
+            <div class="review-header">
+              <div class="review-avatar">🤤</div>
+              <div class="review-info">
+                <p class="review-name">James T.</p>
+                <span class="review-rating">★★★★★</span>
+              </div>
+            </div>
+            <p class="review-text">"Best chocolate I've ever had. The flavor complexity is incredible!"</p>
+            <span class="review-date">3 weeks ago</span>
+          </div>
+
+          <div class="review-card">
+            <div class="review-header">
+              <div class="review-avatar">😋</div>
+              <div class="review-info">
+                <p class="review-name">Priya K.</p>
+                <span class="review-rating">★★★★★</span>
+              </div>
+            </div>
+            <p class="review-text">"Gift wrapped beautifully for my friend's birthday. She couldn't stop raving about it!"</p>
+            <span class="review-date">1 month ago</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Related Products -->
+      <div class="related-products">
+        <h2>🍫 You Might Also Love</h2>
+        <div class="related-grid" id="relatedProducts">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__wrapper">
+      <div class="footer__content">
+        <div class="footer__brand">
+          <h3>🍫 Midnight Chocolate</h3>
+          <p>Crafted with passion, enjoyed with bliss. Pure chocolate paradise.</p>
+          <div class="footer__badges">
+            <span class="pill ghost">🍫 Bean-to-Bar</span>
+            <span class="pill ghost">❄️ Cold-Chain</span>
+            <span class="pill ghost">✨ Hand Tempered</span>
+          </div>
+        </div>
+        <div class="footer__links">
+          <h4>Quick Links</h4>
+          <a href="collection.html">Collection</a>
+          <a href="story.html">Our Story</a>
+          <a href="#">Gifting</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="footer__contact">
+          <h4>Get in Touch</h4>
+          <p>📧 hello@midnightchoc.com</p>
+          <p>📱 +1 (555) 123-4567</p>
+          <p>🕐 Mon-Fri, 9AM-6PM EST</p>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2025 Midnight Chocolate. All rights reserved. 🍫✨</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Load product detail on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get('id');
+      if (productId) {
+        window.loadProductDetail(productId);
+      }
+    });
+
+    // Quantity controls
+    document.getElementById('qtyMinus').addEventListener('click', () => {
+      const qty = document.getElementById('quantity');
+      if (qty.value > 1) qty.value--;
+    });
+
+    document.getElementById('qtyPlus').addEventListener('click', () => {
+      const qty = document.getElementById('quantity');
+      if (qty.value < 10) qty.value++;
+    });
+
+    // Add to cart
+    document.getElementById('addToCartBtn').addEventListener('click', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get('id');
+      const quantity = parseInt(document.getElementById('quantity').value);
+      window.addToCart(productId, quantity);
+    });
+  </script>
+</body>
+</html>

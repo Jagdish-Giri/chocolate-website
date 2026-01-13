@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Midnight Chocolate 🍫</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__wrapper">
+      <a href="index.html" class="nav__brand">🍫 Midnight Chocolate</a>
+      <div class="nav__links">
+        <a href="index.html">Home</a>
+        <a href="collection.html">Collection</a>
+        <a href="story.html">Our Story</a>
+        <a href="cart.html" class="nav__cart">
+          🛒 Cart <span class="cart-count">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Checkout Section -->
+  <section class="checkout-section">
+    <div class="checkout__wrapper">
+      <div class="checkout__header">
+        <h1>💳 Complete Your Order</h1>
+        <p>Secure checkout • Takes 2 minutes</p>
+      </div>
+
+      <!-- Progress Steps -->
+      <div class="checkout-progress">
+        <div class="progress-step active">
+          <span class="progress-number">1</span>
+          <span class="progress-label">Shipping</span>
+        </div>
+        <div class="progress-step" id="progressPayment">
+          <span class="progress-number">2</span>
+          <span class="progress-label">Payment</span>
+        </div>
+        <div class="progress-step" id="progressConfirm">
+          <span class="progress-number">3</span>
+          <span class="progress-label">Confirmation</span>
+        </div>
+      </div>
+
+      <!-- Checkout Form -->
+      <div id="checkoutForm" class="checkout-form">
+        <!-- Shipping Info -->
+        <div class="form-section">
+          <h2>📦 Shipping Address</h2>
+          <form id="shippingForm" class="form-grid">
+            <div class="form-group">
+              <label for="fullName">Full Name *</label>
+              <input type="text" id="fullName" required placeholder="John Doe">
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" required placeholder="john@example.com">
+            </div>
+            <div class="form-group form-group--full">
+              <label for="address">Street Address *</label>
+              <input type="text" id="address" required placeholder="123 Main Street">
+            </div>
+            <div class="form-group">
+              <label for="city">City *</label>
+              <input type="text" id="city" required placeholder="New York">
+            </div>
+            <div class="form-group">
+              <label for="state">State/Province *</label>
+              <input type="text" id="state" required placeholder="NY">
+            </div>
+            <div class="form-group">
+              <label for="zipcode">ZIP Code *</label>
+              <input type="text" id="zipcode" required placeholder="10001">
+            </div>
+            <div class="form-group">
+              <label for="country">Country *</label>
+              <select id="country" required>
+                <option value="">Select Country</option>
+                <option value="USA">United States</option>
+                <option value="CA">Canada</option>
+                <option value="UK">United Kingdom</option>
+                <option value="IN">India</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </form>
+        </div>
+
+        <!-- Shipping Method -->
+        <div class="form-section">
+          <h2>🚚 Shipping Method</h2>
+          <div class="shipping-options">
+            <label class="shipping-option">
+              <input type="radio" name="shipping" value="standard" checked>
+              <div class="option-content">
+                <span class="option-title">Standard Shipping</span>
+                <span class="option-desc">5-7 business days • FREE</span>
+              </div>
+            </label>
+            <label class="shipping-option">
+              <input type="radio" name="shipping" value="express">
+              <div class="option-content">
+                <span class="option-title">Express Shipping</span>
+                <span class="option-desc">2-3 business days • $15</span>
+              </div>
+            </label>
+            <label class="shipping-option">
+              <input type="radio" name="shipping" value="overnight">
+              <div class="option-content">
+                <span class="option-title">Overnight Shipping</span>
+                <span class="option-desc">Next business day • $40</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Payment Info -->
+        <div class="form-section">
+          <h2>💳 Payment Method</h2>
+          <div class="payment-options">
+            <label class="payment-option">
+              <input type="radio" name="payment" value="card" checked>
+              <span>💳 Credit/Debit Card</span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="payment" value="paypal">
+              <span>🅿️ PayPal</span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="payment" value="apple">
+              <span>🍎 Apple Pay</span>
+            </label>
+          </div>
+
+          <!-- Card Details (shown when card is selected) -->
+          <form id="cardForm" class="form-grid" style="margin-top: 20px;">
+            <div class="form-group form-group--full">
+              <label for="cardName">Cardholder Name *</label>
+              <input type="text" id="cardName" placeholder="John Doe">
+            </div>
+            <div class="form-group form-group--full">
+              <label for="cardNumber">Card Number *</label>
+              <input type="text" id="cardNumber" placeholder="4532 1234 5678 9010" maxlength="19">
+            </div>
+            <div class="form-group">
+              <label for="cardExpiry">Expiry Date *</label>
+              <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5">
+            </div>
+            <div class="form-group">
+              <label for="cardCVC">CVC *</label>
+              <input type="text" id="cardCVC" placeholder="123" maxlength="4">
+            </div>
+          </form>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="checkout-summary">
+          <h2>📋 Order Summary</h2>
+          <div class="summary-items" id="checkoutSummary">
+            <!-- Items populated by JS -->
+          </div>
+          <div class="summary-total">
+            <span>Total</span>
+            <span id="checkoutTotal">$0.00</span>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button id="submitCheckout" class="btn btn--primary btn--large btn--block">
+          💳 Complete Purchase ($0.00)
+        </button>
+
+        <a href="cart.html" class="btn btn--secondary btn--large btn--block">
+          ← Back to Cart
+        </a>
+
+        <!-- Security Badge -->
+        <div class="security-badge">
+          🔒 Your payment information is secure and encrypted
+        </div>
+      </div>
+
+      <!-- Confirmation Screen -->
+      <div id="confirmationScreen" class="confirmation-screen" style="display: none;">
+        <div class="confirmation-content">
+          <div class="confirmation-icon">✅</div>
+          <h1>Order Confirmed! 🎉</h1>
+          <p class="confirmation-message">Thank you for your delicious purchase!</p>
+
+          <div class="order-details">
+            <div class="detail-row">
+              <span>Order Number</span>
+              <span id="orderNumber" class="detail-value">#MC-2025-001</span>
+            </div>
+            <div class="detail-row">
+              <span>Order Total</span>
+              <span id="orderTotal" class="detail-value">$0.00</span>
+            </div>
+            <div class="detail-row">
+              <span>Estimated Delivery</span>
+              <span id="deliveryDate" class="detail-value">Jan 17, 2025</span>
+            </div>
+          </div>
+
+          <div class="confirmation-message-box">
+            <p>📧 A confirmation email has been sent to <strong id="confirmEmail">email@example.com</strong></p>
+            <p>🍫 Your chocolate will arrive in perfect condition, ready to delight your taste buds!</p>
+          </div>
+
+          <div class="confirmation-actions">
+            <a href="collection.html" class="btn btn--primary">
+              Continue Shopping 🍫
+            </a>
+            <a href="index.html" class="btn btn--secondary">
+              Back to Home
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__wrapper">
+      <div class="footer__content">
+        <div class="footer__brand">
+          <h3>🍫 Midnight Chocolate</h3>
+          <p>Crafted with passion, enjoyed with bliss. Pure chocolate paradise.</p>
+          <div class="footer__badges">
+            <span class="pill ghost">🍫 Bean-to-Bar</span>
+            <span class="pill ghost">❄️ Cold-Chain</span>
+            <span class="pill ghost">✨ Hand Tempered</span>
+          </div>
+        </div>
+        <div class="footer__links">
+          <h4>Quick Links</h4>
+          <a href="collection.html">Collection</a>
+          <a href="story.html">Our Story</a>
+          <a href="#">Gifting</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="footer__contact">
+          <h4>Get in Touch</h4>
+          <p>📧 hello@midnightchoc.com</p>
+          <p>📱 +1 (555) 123-4567</p>
+          <p>🕐 Mon-Fri, 9AM-6PM EST</p>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2025 Midnight Chocolate. All rights reserved. 🍫✨</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      window.renderCheckoutPage();
+    });
+
+    document.getElementById('submitCheckout').addEventListener('click', () => {
+      window.processCheckout();
+    });
+
+    // Card number formatting
+    document.getElementById('cardNumber').addEventListener('input', (e) => {
+      let value = e.target.value.replace(/\s/g, '');
+      let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+      e.target.value = formattedValue;
+    });
+
+    // Expiry date formatting
+    document.getElementById('cardExpiry').addEventListener('input', (e) => {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length >= 2) {
+        value = value.slice(0, 2) + '/' + value.slice(2, 4);
+      }
+      e.target.value = value;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart - Midnight Chocolate 🍫</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__wrapper">
+      <a href="index.html" class="nav__brand">🍫 Midnight Chocolate</a>
+      <div class="nav__links">
+        <a href="index.html">Home</a>
+        <a href="collection.html">Collection</a>
+        <a href="story.html">Our Story</a>
+        <a href="cart.html" class="nav__cart active">
+          🛒 Cart <span class="cart-count">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Cart Section -->
+  <section class="cart-section">
+    <div class="cart__wrapper">
+      <h1>🛒 Your Chocolate Cart</h1>
+
+      <!-- Empty Cart Message -->
+      <div id="emptyCart" class="empty-cart" style="display: none;">
+        <div class="empty-cart__icon">🍫</div>
+        <h2>Your cart is empty</h2>
+        <p>Discover our delicious chocolate collection and add some sweetness to your life!</p>
+        <a href="collection.html" class="btn btn--primary">Continue Shopping</a>
+      </div>
+
+      <!-- Cart Content -->
+      <div id="cartContent" class="cart-content">
+        <div class="cart__items">
+          <div class="cart-items-list" id="cartItems">
+            <!-- Items populated by JS -->
+          </div>
+        </div>
+
+        <!-- Cart Summary -->
+        <div class="cart__summary">
+          <h2>Order Summary</h2>
+
+          <div class="summary-item">
+            <span>Subtotal</span>
+            <span id="subtotal">$0.00</span>
+          </div>
+
+          <div class="summary-item">
+            <span>Shipping</span>
+            <span id="shipping">Free</span>
+          </div>
+
+          <div class="summary-item">
+            <span>Tax</span>
+            <span id="tax">$0.00</span>
+          </div>
+
+          <div class="summary-item summary-item--total">
+            <span>Total</span>
+            <span id="total" class="total-price">$0.00</span>
+          </div>
+
+          <button id="checkoutBtn" class="btn btn--primary btn--large btn--block">
+            💳 Proceed to Checkout
+          </button>
+
+          <a href="collection.html" class="btn btn--secondary btn--large btn--block">
+            ← Continue Shopping
+          </a>
+
+          <div class="promo-section">
+            <input type="text" id="promoCode" placeholder="Enter promo code" class="promo-input">
+            <button id="applyPromo" class="btn btn--ghost">Apply</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust Info -->
+      <div class="cart-trust">
+        <div class="trust-banner">
+          <div class="trust-item-inline">
+            <span>🚚</span>
+            <span>Free shipping on orders over $50</span>
+          </div>
+          <div class="trust-item-inline">
+            <span>✓</span>
+            <span>30-day money-back guarantee</span>
+          </div>
+          <div class="trust-item-inline">
+            <span>🔒</span>
+            <span>Secure SSL encrypted checkout</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__wrapper">
+      <div class="footer__content">
+        <div class="footer__brand">
+          <h3>🍫 Midnight Chocolate</h3>
+          <p>Crafted with passion, enjoyed with bliss. Pure chocolate paradise.</p>
+          <div class="footer__badges">
+            <span class="pill ghost">🍫 Bean-to-Bar</span>
+            <span class="pill ghost">❄️ Cold-Chain</span>
+            <span class="pill ghost">✨ Hand Tempered</span>
+          </div>
+        </div>
+        <div class="footer__links">
+          <h4>Quick Links</h4>
+          <a href="collection.html">Collection</a>
+          <a href="story.html">Our Story</a>
+          <a href="#">Gifting</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="footer__contact">
+          <h4>Get in Touch</h4>
+          <p>📧 hello@midnightchoc.com</p>
+          <p>📱 +1 (555) 123-4567</p>
+          <p>🕐 Mon-Fri, 9AM-6PM EST</p>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2025 Midnight Chocolate. All rights reserved. 🍫✨</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      window.renderCartPage();
+    });
+
+    document.getElementById('checkoutBtn').addEventListener('click', () => {
+      window.location.href = 'checkout.html';
+    });
+
+    document.getElementById('applyPromo').addEventListener('click', () => {
+      const code = document.getElementById('promoCode').value.toUpperCase();
+      if (code === 'CHOCO20') {
+        window.showToast('✨ Promo code applied! 20% discount activated.');
+        window.renderCartPage();
+      } else if (code) {
+        window.showToast('❌ Invalid promo code', 'error');
+      }
+    });
+  </script>
+</body>
+</html>
