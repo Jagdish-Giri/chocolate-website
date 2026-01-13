@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maison Cacao | Collection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="collection">
+  <header class="nav">
+    <div class="nav__brand">Maison Cacao</div>
+    <nav class="nav__links">
+      <a href="index.html#collections">Collections</a>
+      <a href="index.html#best">Bestsellers</a>
+      <a href="story.html">Story</a>
+    </nav>
+    <div class="nav__actions">
+      <a class="pill ghost" href="index.html">Home</a>
+      <div class="cart-chip" id="cart-chip">
+        <span class="cart-icon">🛒</span>
+        <span class="cart-count" id="cart-count">0</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="section__header">
+      <div>
+        <p class="eyebrow">Curated assortment</p>
+        <h1>Chocolate collection</h1>
+        <p class="lede">Filter by mood, cacao profile, and finish. Hover to reveal tasting notes.</p>
+      </div>
+      <div class="pill ghost">Refined daily</div>
+    </div>
+
+    <div class="filters">
+      <input type="search" id="search" placeholder="Search ganache, caramel, ruby..." />
+      <div class="filter-chips" id="filter-categories"></div>
+      <div class="range">
+        <label for="price">Price up to $<span id="price-value">32</span></label>
+        <input type="range" id="price" min="10" max="32" value="32" />
+      </div>
+      <select id="sort">
+        <option value="featured">Featured</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="rating">Top Rated</option>
+      </select>
+    </div>
+
+    <div class="grid" id="collection-grid"></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__brand">
+      <h3>Maison Cacao</h3>
+      <p>Designed for those who collect experiences, not just desserts.</p>
+      <div class="footer__badges">
+        <span class="pill ghost">Tasting notes</span>
+        <span class="pill ghost">Limited runs</span>
+        <span class="pill ghost">Gift wrap ready</span>
+      </div>
+    </div>
+    <div class="footer__links">
+      <div>
+        <p class="eyebrow">Back to</p>
+        <a href="index.html#collections">Collections</a>
+        <a href="index.html#best">Bestsellers</a>
+      </div>
+      <div>
+        <p class="eyebrow">Maison</p>
+        <a href="story.html">Our story</a>
+        <a href="#">Journal</a>
+      </div>
+      <div>
+        <p class="eyebrow">Support</p>
+        <a href="#">Orders</a>
+        <a href="#">Corporate gifting</a>
+      </div>
+    </div>
+    <p class="tiny">Taste curated, ship chilled.</p>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
