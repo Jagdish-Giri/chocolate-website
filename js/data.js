@@ -32,7 +32,7 @@ export const products = [
     tags: ["caramel", "salted", "gift"],
     rating: 4.9,
     image:
-      "https://images.unsplash.com/photo-1523293835980-6c15283f7f97?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1599599810694-b5ac4dd64b57?auto=format&fit=crop&w=1200&q=80",
     description: "Amber caramel cooked to 118°C, finished with Icelandic sea salt under a glossy dark shell."
   },
   {
