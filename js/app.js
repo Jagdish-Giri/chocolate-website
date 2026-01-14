@@ -812,8 +812,6 @@ function mount() {
   animateCounters();
   setupCartDrawer();
   setupQuickView();
-  setupNewsletterPopup();
-  setupAnnouncementBar();
   setupHamburgerMenu();
 }
 
