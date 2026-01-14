@@ -8,7 +8,7 @@ export const products = [
     tags: ["dark", "ganache", "signature"],
     rating: 4.9,
     image:
-      "https://images.unsplash.com/photo-1599599810694-b5ac4dd64b57?w=800&q=80",
+      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80",
     description: "72% single-origin dark shells filled with slow-whipped Madagascar vanilla ganache."
   },
   {
