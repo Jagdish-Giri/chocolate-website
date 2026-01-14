@@ -87,23 +87,25 @@ function renderFeatured() {
   grid.innerHTML = featured
     .map(
       (p) => `
-      <article class="card">
-        <img src="${p.image}" alt="${p.name}" loading="lazy" />
-        <h3>${p.name}</h3>
-        <p class="tiny">${p.description}</p>
-        <div class="meta">
-          <span>$${p.price}</span>
-          <span>${p.rating}★</span>
-        </div>
-        <div class="tagline">
-          ${p.tags
-            .slice(0, 3)
-            .map((t) => `<span class="tag">${t}</span>`)
-            .join("")}
-        </div>
+      <article class="card" style="cursor: pointer;">
+        <a href="product.html?id=${p.id}" style="text-decoration: none; color: inherit;">
+          <img src="${p.image}" alt="${p.name}" loading="lazy" />
+          <h3>${p.name}</h3>
+          <p class="tiny">${p.description}</p>
+          <div class="meta">
+            <span>$${p.price}</span>
+            <span>${p.rating}★</span>
+          </div>
+          <div class="tagline">
+            ${p.tags
+              .slice(0, 3)
+              .map((t) => `<span class="tag">${t}</span>`)
+              .join("")}
+          </div>
+        </a>
         <div class="hero__cta" style="margin-top:12px;">
-          <a href="product.html?id=${p.id}" class="pill">View Details</a>
-          <button class="pill ghost" data-add="${p.id}">Add to cart</button>
+          <button class="pill" data-add="${p.id}">Add to Cart</button>
+          <a class="pill ghost" href="product.html?id=${p.id}">View Details</a>
         </div>
       </article>
     `
@@ -111,7 +113,11 @@ function renderFeatured() {
     .join("");
 
   grid.querySelectorAll("[data-add]").forEach((btn) => {
-    btn.addEventListener("click", () => addToCart(btn.dataset.add));
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      addToCart(btn.dataset.add);
+    });
   });
 }
 
@@ -140,20 +146,22 @@ function setupSlider() {
   track.innerHTML = best
     .map(
       (p) => `
-        <article class="card">
-          <img src="${p.image}" alt="${p.name}" loading="lazy" />
-          <h3>${p.name}</h3>
-          <div class="meta">
-            <strong>$${p.price}</strong>
-            <span>${p.rating}★</span>
-          </div>
-          <p class="tiny">${p.description}</p>
-          <div class="tagline">
-            ${p.tags.map((t) => `<span class="tag">${t}</span>`).join("")}
-          </div>
+        <article class="card" style="cursor: pointer;">
+          <a href="product.html?id=${p.id}" style="text-decoration: none; color: inherit;">
+            <img src="${p.image}" alt="${p.name}" loading="lazy" />
+            <h3>${p.name}</h3>
+            <div class="meta">
+              <strong>$${p.price}</strong>
+              <span>${p.rating}★</span>
+            </div>
+            <p class="tiny">${p.description}</p>
+            <div class="tagline">
+              ${p.tags.map((t) => `<span class="tag">${t}</span>`).join("")}
+            </div>
+          </a>
           <div class="hero__cta" style="margin-top:12px;">
-            <button class="pill" data-add="${p.id}">Add</button>
-            <a class="pill ghost" href="collection.html">Shop</a>
+            <button class="pill" data-add="${p.id}">Add to Cart</button>
+            <a class="pill ghost" href="product.html?id=${p.id}">View</a>
           </div>
         </article>
       `
@@ -166,7 +174,11 @@ function setupSlider() {
   qs("#slider-next")?.addEventListener("click", () => shiftSlide(1));
   qs("#slider-prev")?.addEventListener("click", () => shiftSlide(-1));
   slider.querySelectorAll("[data-add]").forEach((btn) => {
-    btn.addEventListener("click", () => addToCart(btn.dataset.add));
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      addToCart(btn.dataset.add);
+    });
   });
 }
 
@@ -241,20 +253,22 @@ function renderCollectionPage() {
     grid.innerHTML = list
       .map(
         (p) => `
-        <article class="card">
-          <img src="${p.image}" alt="${p.name}" loading="lazy" />
-          <h3>${p.name}</h3>
-          <p class="tiny">${p.description}</p>
-          <div class="meta">
-            <span>$${p.price}</span>
-            <span>${p.rating}★</span>
-          </div>
-          <div class="tagline">
-            ${p.tags.map((t) => `<span class="tag">${t}</span>`).join("")}
-          </div>
+        <article class="card" style="cursor: pointer;">
+          <a href="product.html?id=${p.id}" style="text-decoration: none; color: inherit;">
+            <img src="${p.image}" alt="${p.name}" loading="lazy" />
+            <h3>${p.name}</h3>
+            <p class="tiny">${p.description}</p>
+            <div class="meta">
+              <span>$${p.price}</span>
+              <span>${p.rating}★</span>
+            </div>
+            <div class="tagline">
+              ${p.tags.map((t) => `<span class="tag">${t}</span>`).join("")}
+            </div>
+          </a>
           <div class="hero__cta" style="margin-top:12px;">
-            <button class="pill" data-add="${p.id}">Add</button>
-            <span class="pill ghost">${p.weight}</span>
+            <button class="pill" data-add="${p.id}">Add to Cart</button>
+            <a class="pill ghost" href="product.html?id=${p.id}">View Details</a>
           </div>
         </article>
       `
@@ -262,7 +276,11 @@ function renderCollectionPage() {
       .join("");
 
     grid.querySelectorAll("[data-add]").forEach((btn) =>
-      btn.addEventListener("click", () => addToCart(btn.dataset.add))
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        addToCart(btn.dataset.add);
+      })
     );
   }
 
