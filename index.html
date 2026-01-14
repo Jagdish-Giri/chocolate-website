@@ -13,6 +13,14 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body data-page="home">
+  <!-- Announcement Bar (Shopify-style) -->
+  <div class="announcement-bar">
+    <div class="announcement-content">
+      <span class="announcement-text">🎉 Free Shipping on Orders Over $50 | Use Code: CHOCO20 for 20% Off</span>
+      <button class="announcement-close" aria-label="Close announcement">✕</button>
+    </div>
+  </div>
+
   <div class="hero-glow"></div>
   
   <style>
@@ -33,19 +41,25 @@
 
   <header class="nav">
     <div class="nav__brand">🍫 Maison Cacao</div>
-    <nav class="nav__links">
+    <button class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="nav__links" id="navLinks">
       <a href="#collections">Collections</a>
       <a href="#best">Bestsellers</a>
       <a href="#story">Story</a>
       <a href="collection.html">Shop All</a>
     </nav>
+    <div class="nav__mobile-overlay" id="navOverlay"></div>
     <div class="nav__actions">
       <button class="pill ghost" id="toggle-theme">Glow</button>
       <a class="pill" href="collection.html">Shop Now</a>
-      <div class="cart-chip" id="cart-chip">
+      <button class="cart-chip" id="openCartDrawer">
         <span class="cart-icon">🛒</span>
         <span class="cart-count" id="cart-count">0</span>
-      </div>
+      </button>
     </div>
   </header>
 
@@ -249,6 +263,86 @@
     </div>
     <p class="tiny">© 2026 Maison Cacao. Crafted for connoisseurs.</p>
   </footer>
+
+  <!-- Cart Drawer (Shopify-style Left Popup) -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer__overlay" id="cartDrawerOverlay"></div>
+    <div class="cart-drawer__panel">
+      <div class="cart-drawer__header">
+        <h2>🛒 Your Cart</h2>
+        <button class="cart-drawer__close" id="closeCartDrawer">✕</button>
+      </div>
+
+      <div class="cart-drawer__empty" id="cartDrawerEmpty" style="display: none;">
+        <div class="empty-icon">🍫</div>
+        <p>Your cart is empty</p>
+        <a href="collection.html" class="btn btn--primary">Start Shopping</a>
+      </div>
+
+      <div class="cart-drawer__content" id="cartDrawerContent">
+        <div class="cart-drawer__items" id="cartDrawerItems">
+          <!-- Items populated by JS -->
+        </div>
+
+        <div class="cart-drawer__footer">
+          <div class="cart-drawer__subtotal">
+            <span>Subtotal</span>
+            <span id="cartDrawerSubtotal">$0.00</span>
+          </div>
+          <p class="cart-drawer__note">🚚 Shipping & taxes calculated at checkout</p>
+          <a href="cart.html" class="btn btn--secondary btn--block">View Cart</a>
+          <a href="checkout.html" class="btn btn--primary btn--block">Checkout</a>
+          <div class="cart-drawer__trust">
+            <span>🔒 Secure Checkout</span>
+            <span>✓ Free Returns</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick View Modal -->
+  <div class="quick-view-modal" id="quickViewModal">
+    <div class="quick-view-overlay" id="quickViewOverlay"></div>
+    <div class="quick-view-content">
+      <button class="quick-view-close" id="closeQuickView">✕</button>
+      <div class="quick-view-grid">
+        <div class="quick-view-image">
+          <img id="qvImage" src="" alt="Product">
+        </div>
+        <div class="quick-view-info">
+          <h2 id="qvName">Product Name</h2>
+          <div class="quick-view-price">
+            <span id="qvPrice">$0.00</span>
+            <span id="qvRating" class="rating-small">★★★★★</span>
+          </div>
+          <p id="qvDescription">Product description</p>
+          <div class="quick-view-tags" id="qvTags"></div>
+          <div class="quick-view-actions">
+            <input type="number" id="qvQuantity" value="1" min="1" max="10" class="qty-input-small">
+            <button id="qvAddToCart" class="btn btn--primary">Add to Cart</button>
+          </div>
+          <a id="qvFullDetails" href="#" class="quick-view-link">View Full Details →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Newsletter Popup -->
+  <div class="newsletter-popup" id="newsletterPopup">
+    <div class="newsletter-popup-overlay" id="newsletterPopupOverlay"></div>
+    <div class="newsletter-popup-content">
+      <button class="newsletter-popup-close" id="closeNewsletterPopup">✕</button>
+      <div class="newsletter-popup-icon">🍫</div>
+      <h2>Sweet Savings Await!</h2>
+      <p>Join our Chocolate Lover's Club and get <strong>20% off</strong> your first order</p>
+      <form id="popupNewsletterForm" class="newsletter-popup-form">
+        <input type="email" placeholder="Enter your email" required>
+        <button type="submit" class="btn btn--primary">Get My Discount</button>
+      </form>
+      <p class="newsletter-popup-privacy">We respect your privacy. Unsubscribe anytime.</p>
+    </div>
+  </div>
 
   <script type="module" src="js/app.js"></script>
 </body>

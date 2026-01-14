@@ -546,6 +546,259 @@ function processCheckout() {
 
 window.processCheckout = processCheckout;
 
+// =====================
+// SHOPIFY-STYLE FEATURES
+// =====================
+
+// Cart Drawer
+function setupCartDrawer() {
+  const cartDrawer = qs("#cartDrawer");
+  const openBtn = qs("#openCartDrawer");
+  const closeBtn = qs("#closeCartDrawer");
+  const overlay = qs("#cartDrawerOverlay");
+
+  if (!cartDrawer || !openBtn) return;
+
+  openBtn.addEventListener("click", () => {
+    cartDrawer.classList.add("active");
+    renderCartDrawer();
+  });
+
+  closeBtn?.addEventListener("click", () => {
+    cartDrawer.classList.remove("active");
+  });
+
+  overlay?.addEventListener("click", () => {
+    cartDrawer.classList.remove("active");
+  });
+}
+
+function renderCartDrawer() {
+  const cart = loadCart();
+  const cartItems = qs("#cartDrawerItems");
+  const emptyState = qs("#cartDrawerEmpty");
+  const contentState = qs("#cartDrawerContent");
+
+  if (cart.length === 0) {
+    if (emptyState) emptyState.style.display = "flex";
+    if (contentState) contentState.style.display = "none";
+    return;
+  }
+
+  if (emptyState) emptyState.style.display = "none";
+  if (contentState) contentState.style.display = "flex";
+
+  let total = 0;
+  cartItems.innerHTML = cart
+    .map((item) => {
+      const product = products.find((p) => p.id == item.id);
+      if (!product) return "";
+      const itemTotal = product.price * item.qty;
+      total += itemTotal;
+      return `
+        <div class="cart-drawer-item">
+          <img src="${product.image}" alt="${product.name}" />
+          <div class="cart-drawer-item__info">
+            <div class="cart-drawer-item__name">${product.name}</div>
+            <div class="cart-drawer-item__meta">${product.weight}</div>
+            <div class="cart-drawer-item__qty">
+              <button onclick="window.updateCartQty('${item.id}', ${item.qty - 1})">−</button>
+              <span>${item.qty}</span>
+              <button onclick="window.updateCartQty('${item.id}', ${item.qty + 1})">+</button>
+            </div>
+          </div>
+          <div class="cart-drawer-item__remove">
+            <div class="cart-drawer-item__price">$${itemTotal.toFixed(2)}</div>
+            <button class="btn-remove-drawer" onclick="window.removeFromCart('${item.id}')">✕</button>
+          </div>
+        </div>
+      `;
+    })
+    .join("");
+
+  const subtotalEl = qs("#cartDrawerSubtotal");
+  if (subtotalEl) subtotalEl.textContent = `$${total.toFixed(2)}`;
+}
+
+window.renderCartDrawer = renderCartDrawer;
+
+// Override updateCartQty to also update drawer
+const originalUpdateQty = updateCartQty;
+updateCartQty = function(productId, qty) {
+  originalUpdateQty(productId, qty);
+  renderCartDrawer();
+};
+window.updateCartQty = updateCartQty;
+
+// Override removeFromCart to also update drawer
+const originalRemove = removeFromCart;
+removeFromCart = function(productId) {
+  originalRemove(productId);
+  renderCartDrawer();
+};
+window.removeFromCart = removeFromCart;
+
+// Override addToCart to show drawer
+const originalAddToCart = addToCart;
+addToCart = function(productId, quantity = 1) {
+  originalAddToCart(productId, quantity);
+  const drawer = qs("#cartDrawer");
+  if (drawer) {
+    drawer.classList.add("active");
+    renderCartDrawer();
+  }
+};
+window.addToCart = addToCart;
+
+// Quick View Modal
+function setupQuickView() {
+  const modal = qs("#quickViewModal");
+  const closeBtn = qs("#closeQuickView");
+  const overlay = qs("#quickViewOverlay");
+
+  if (!modal) return;
+
+  closeBtn?.addEventListener("click", () => {
+    modal.classList.remove("active");
+  });
+
+  overlay?.addEventListener("click", () => {
+    modal.classList.remove("active");
+  });
+
+  // Add quick view buttons to products
+  document.querySelectorAll(".card").forEach((card) => {
+    const existingBtn = card.querySelector(".quick-view-btn");
+    if (existingBtn) return;
+
+    const quickViewBtn = document.createElement("button");
+    quickViewBtn.className = "quick-view-btn pill ghost";
+    quickViewBtn.textContent = "👁️ Quick View";
+    quickViewBtn.style.marginTop = "8px";
+    
+    const ctaDiv = card.querySelector(".hero__cta");
+    if (ctaDiv) {
+      ctaDiv.appendChild(quickViewBtn);
+    }
+
+    quickViewBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const productId = card.querySelector("[data-add]")?.dataset.add;
+      if (productId) showQuickView(productId);
+    });
+  });
+}
+
+function showQuickView(productId) {
+  const product = products.find((p) => p.id == productId);
+  if (!product) return;
+
+  qs("#qvImage").src = product.image;
+  qs("#qvName").textContent = product.name;
+  qs("#qvPrice").textContent = `$${product.price}`;
+  qs("#qvRating").textContent = "★".repeat(Math.floor(product.rating));
+  qs("#qvDescription").textContent = product.description;
+  qs("#qvTags").innerHTML = product.tags
+    .slice(0, 3)
+    .map((t) => `<span>${t}</span>`)
+    .join("");
+  qs("#qvFullDetails").href = `product.html?id=${productId}`;
+  qs("#qvQuantity").value = 1;
+
+  const addBtn = qs("#qvAddToCart");
+  addBtn.onclick = () => {
+    const qty = parseInt(qs("#qvQuantity").value);
+    addToCart(productId, qty);
+    qs("#quickViewModal").classList.remove("active");
+  };
+
+  qs("#quickViewModal").classList.add("active");
+}
+
+window.showQuickView = showQuickView;
+
+// Newsletter Popup
+function setupNewsletterPopup() {
+  const popup = qs("#newsletterPopup");
+  const closeBtn = qs("#closeNewsletterPopup");
+  const overlay = qs("#newsletterPopupOverlay");
+  const form = qs("#popupNewsletterForm");
+
+  if (!popup) return;
+
+  // Check if already shown
+  const hasSeenPopup = localStorage.getItem("mc-newsletter-seen");
+  if (!hasSeenPopup) {
+    setTimeout(() => {
+      popup.classList.add("active");
+    }, 3000); // Show after 3 seconds
+  }
+
+  closeBtn?.addEventListener("click", () => {
+    popup.classList.remove("active");
+    localStorage.setItem("mc-newsletter-seen", "true");
+  });
+
+  overlay?.addEventListener("click", () => {
+    popup.classList.remove("active");
+    localStorage.setItem("mc-newsletter-seen", "true");
+  });
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    showToast("🎉 Welcome! Check your email for 20% off code!");
+    popup.classList.remove("active");
+    localStorage.setItem("mc-newsletter-seen", "true");
+    form.reset();
+  });
+}
+
+// Announcement Bar
+function setupAnnouncementBar() {
+  const closeBtn = qs(".announcement-close");
+  const bar = qs(".announcement-bar");
+
+  closeBtn?.addEventListener("click", () => {
+    bar.style.display = "none";
+    localStorage.setItem("mc-announcement-closed", "true");
+  });
+
+  // Check if already closed
+  if (localStorage.getItem("mc-announcement-closed")) {
+    if (bar) bar.style.display = "none";
+  }
+}
+
+// Mobile Hamburger Menu
+function setupHamburgerMenu() {
+  const hamburger = qs("#hamburger");
+  const navLinks = qs("#navLinks");
+  const navOverlay = qs("#navOverlay");
+
+  if (!hamburger || !navLinks) return;
+
+  hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    navLinks.classList.toggle("active");
+    navOverlay.classList.toggle("active");
+  });
+
+  navOverlay?.addEventListener("click", () => {
+    hamburger.classList.remove("active");
+    navLinks.classList.remove("active");
+    navOverlay.classList.remove("active");
+  });
+
+  // Close on link click
+  navLinks.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      hamburger.classList.remove("active");
+      navLinks.classList.remove("active");
+      navOverlay.classList.remove("active");
+    });
+  });
+}
+
 function mount() {
   renderFeatured();
   renderCategoryChips();
@@ -557,6 +810,12 @@ function mount() {
   setupScrollAnimations();
   setupParallax();
   animateCounters();
+  setupCartDrawer();
+  setupQuickView();
+  setupNewsletterPopup();
+  setupAnnouncementBar();
+  setupHamburgerMenu();
 }
 
 document.addEventListener("DOMContentLoaded", mount);
+
