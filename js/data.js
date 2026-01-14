@@ -8,7 +8,7 @@ export const products = [
     tags: ["dark", "ganache", "signature"],
     rating: 4.9,
     image:
-      "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1599599810694-b5ac4dd64b57?w=800&q=80",
     description: "72% single-origin dark shells filled with slow-whipped Madagascar vanilla ganache."
   },
   {
@@ -20,7 +20,7 @@ export const products = [
     tags: ["milk", "nutty", "bestseller"],
     rating: 4.8,
     image:
-      "https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80",
     description: "Slow-roasted Piedmont hazelnuts layered in milk chocolate with a crisp feuilletine snap."
   },
   {
@@ -32,7 +32,7 @@ export const products = [
     tags: ["caramel", "salted", "gift"],
     rating: 4.9,
     image:
-      "https://images.unsplash.com/photo-1599599810694-b5ac4dd64b57?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=800&q=80",
     description: "Amber caramel cooked to 118°C, finished with Icelandic sea salt under a glossy dark shell."
   },
   {
@@ -44,7 +44,7 @@ export const products = [
     tags: ["ruby", "fruity", "limited"],
     rating: 4.7,
     image:
-      "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80",
     description: "Ruby cacao blended with passion fruit and raspberry purée for a bright, modern bite."
   },
   {
@@ -56,7 +56,7 @@ export const products = [
     tags: ["gianduja", "pistachio", "smooth"],
     rating: 4.8,
     image:
-      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
     description: "Sicilian pistachio paste folded into velvety milk chocolate for a melt-away finish."
   },
   {
@@ -68,7 +68,7 @@ export const products = [
     tags: ["coffee", "crunch", "bold"],
     rating: 4.6,
     image:
-      "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=800&q=80",
     description: "Ethically sourced espresso nibs folded into 64% dark chocolate with a toasted crunch."
   },
   {
@@ -80,7 +80,7 @@ export const products = [
     tags: ["almonds", "snack", "classic"],
     rating: 4.5,
     image:
-      "https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1585070526059-41b9652215aa?w=800&q=80",
     description: "Slow-roasted California almonds rolled in bittersweet cocoa and demerara sugar."
   },
   {
@@ -92,7 +92,7 @@ export const products = [
     tags: ["seasonal", "mint", "sharing"],
     rating: 4.4,
     image:
-      "https://images.unsplash.com/photo-1454340439465-5323463ca87a?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1599599810694-b5ac4dd64b57?w=800&q=80",
     description: "Crisp peppermint shards scattered across 68% dark chocolate with a cool finish."
   },
   {
@@ -104,7 +104,7 @@ export const products = [
     tags: ["citrus", "dark", "elegant"],
     rating: 4.6,
     image:
-      "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80",
     description: "Hand-cut Valencia orange peel dipped in tempered dark chocolate for a clean citrus bite."
   },
   {
@@ -116,7 +116,7 @@ export const products = [
     tags: ["gift", "assortment", "luxury"],
     rating: 5,
     image:
-      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80",
     description: "Curated box of hazelnut, pistachio, and almond pralines wrapped in brushed gold foil."
   }
 ];
