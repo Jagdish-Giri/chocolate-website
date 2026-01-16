@@ -57,6 +57,7 @@ function updateCartQty(productId, qty) {
     item.qty = Math.max(1, qty);
     saveCart(cart);
     updateCartCount();
+    window.showToast("✓ Quantity updated");
   }
 }
 
