@@ -199,14 +199,20 @@ function renderCollectionPage() {
   const sort = qs("#sort");
   const chips = qs("#filter-categories");
 
+  if (!chips) return;
+
   const categories = ["All", ...new Set(products.map((p) => p.category))];
   chips.innerHTML = categories
     .map((c, idx) => `<button class="${idx === 0 ? "active" : ""}" data-cat="${c}">${c}</button>`)
     .join("");
 
-  chips.addEventListener("click", (e) => {
+  // Remove any existing listeners and re-attach
+  chips.replaceWith(chips.cloneNode(true));
+  const newChips = qs("#filter-categories");
+  
+  newChips.addEventListener("click", (e) => {
     if (e.target.matches("button[data-cat]")) {
-      chips.querySelectorAll("button").forEach((b) => b.classList.remove("active"));
+      newChips.querySelectorAll("button").forEach((b) => b.classList.remove("active"));
       e.target.classList.add("active");
       render();
     }
@@ -225,7 +231,7 @@ function renderCollectionPage() {
   function render() {
     const term = search?.value?.toLowerCase() || "";
     const maxPrice = Number(price?.value || 100);
-    const activeCat = chips?.querySelector(".active")?.dataset.cat || "All";
+    const activeCat = newChips?.querySelector(".active")?.dataset.cat || "All";
     let list = products.filter((p) => p.price <= maxPrice);
     if (activeCat !== "All") list = list.filter((p) => p.category === activeCat);
     if (term) {
