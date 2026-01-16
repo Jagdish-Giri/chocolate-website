@@ -761,6 +761,10 @@ main {
   margin-top: 8px;
 }
 
+.footer__badges .pill {
+  user-select: none;
+}
+
 /* Footer Social Links */
 .footer__social {
   margin-top: 24px;
