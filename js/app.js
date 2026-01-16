@@ -640,19 +640,25 @@ function renderCartDrawer() {
 
 window.renderCartDrawer = renderCartDrawer;
 
-// Override updateCartQty to also update drawer
+// Override updateCartQty to also update drawer and cart page
 const originalUpdateQty = updateCartQty;
 updateCartQty = function(productId, qty) {
   originalUpdateQty(productId, qty);
   renderCartDrawer();
+  if (typeof window.renderCartPage === 'function') {
+    window.renderCartPage();
+  }
 };
 window.updateCartQty = updateCartQty;
 
-// Override removeFromCart to also update drawer
+// Override removeFromCart to also update drawer and cart page
 const originalRemove = removeFromCart;
 removeFromCart = function(productId) {
   originalRemove(productId);
   renderCartDrawer();
+  if (typeof window.renderCartPage === 'function') {
+    window.renderCartPage();
+  }
 };
 window.removeFromCart = removeFromCart;
 
