@@ -359,5 +359,15 @@
   </div>
 
   <script type="module" src="js/app.js"></script>
+  <script>
+    setTimeout(() => {
+      if (typeof window.renderCategoryChips === 'function') {
+        window.renderCategoryChips();
+      }
+      if (typeof window.updateCartCount === 'function') {
+        window.updateCartCount();
+      }
+    }, 100);
+  </script>
 </body>
 </html>

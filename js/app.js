@@ -129,14 +129,21 @@ function renderCategoryChips() {
   chips.innerHTML = categories
     .map((c, idx) => `<button class="${idx === 0 ? "active" : ""}" data-cat="${c}">${c}</button>`)
     .join("");
-  chips.addEventListener("click", (e) => {
+  
+  // Remove any existing listeners and re-attach
+  chips.replaceWith(chips.cloneNode(true));
+  const newChips = qs("#category-chips");
+  
+  newChips.addEventListener("click", (e) => {
     if (e.target.matches("button[data-cat]")) {
-      chips.querySelectorAll("button").forEach((b) => b.classList.remove("active"));
+      newChips.querySelectorAll("button").forEach((b) => b.classList.remove("active"));
       e.target.classList.add("active");
       scrollToSection("collections");
     }
   });
 }
+
+window.renderCategoryChips = renderCategoryChips;
 
 function setupSlider() {
   const slider = qs("#best-slider");
