@@ -644,10 +644,22 @@ window.renderCartDrawer = renderCartDrawer;
 // Override updateCartQty to also update drawer and cart page
 const originalUpdateQty = updateCartQty;
 updateCartQty = function(productId, qty) {
-  originalUpdateQty(productId, qty);
-  renderCartDrawer();
-  if (typeof window.renderCartPage === 'function') {
-    window.renderCartPage();
+  try {
+    originalUpdateQty(productId, qty);
+  } catch (e) {
+    console.error("Error updating qty:", e);
+  }
+  try {
+    renderCartDrawer();
+  } catch (e) {
+    console.log("Drawer not available");
+  }
+  try {
+    if (typeof window.renderCartPage === 'function') {
+      window.renderCartPage();
+    }
+  } catch (e) {
+    console.error("Error rendering cart page:", e);
   }
 };
 window.updateCartQty = updateCartQty;
@@ -655,10 +667,22 @@ window.updateCartQty = updateCartQty;
 // Override removeFromCart to also update drawer and cart page
 const originalRemove = removeFromCart;
 removeFromCart = function(productId) {
-  originalRemove(productId);
-  renderCartDrawer();
-  if (typeof window.renderCartPage === 'function') {
-    window.renderCartPage();
+  try {
+    originalRemove(productId);
+  } catch (e) {
+    console.error("Error removing item:", e);
+  }
+  try {
+    renderCartDrawer();
+  } catch (e) {
+    console.log("Drawer not available");
+  }
+  try {
+    if (typeof window.renderCartPage === 'function') {
+      window.renderCartPage();
+    }
+  } catch (e) {
+    console.error("Error rendering cart page:", e);
   }
 };
 window.removeFromCart = removeFromCart;

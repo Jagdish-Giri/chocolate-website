@@ -184,11 +184,15 @@
 
   <script type="module" src="js/app.js"></script>
   <script>
-    setTimeout(() => {
+    function initializeCart() {
       if (typeof window.renderCartPage === 'function') {
         window.renderCartPage();
+      } else {
+        setTimeout(initializeCart, 100);
       }
-    }, 300);
+    }
+    
+    initializeCart();
 
     document.getElementById('checkoutBtn').addEventListener('click', () => {
       alert('🚀 Coming Soon!\n\nCheckout feature is under development. Stay tuned for updates!');
