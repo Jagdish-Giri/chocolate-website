@@ -44,7 +44,7 @@ export const products = [
     tags: ["ruby", "fruity", "limited"],
     rating: 4.7,
     image:
-      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80",
+      "https://images.unsplash.com/photo-1599599810694-b5ac4dd64b57?w=800&q=80",
     description: "Ruby cacao blended with passion fruit and raspberry purée for a bright, modern bite."
   },
   {
@@ -92,7 +92,7 @@ export const products = [
     tags: ["seasonal", "mint", "sharing"],
     rating: 4.4,
     image:
-      "https://images.unsplash.com/photo-1599599810694-b5ac4dd64b57?w=800&q=80",
+      "https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=800&q=80",
     description: "Crisp peppermint shards scattered across 68% dark chocolate with a cool finish."
   },
   {
@@ -116,7 +116,7 @@ export const products = [
     tags: ["gift", "assortment", "luxury"],
     rating: 5,
     image:
-      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80",
+      "https://images.unsplash.com/photo-1593080876351-d59cd75e9ce1?w=800&q=80",
     description: "Curated box of hazelnut, pistachio, and almond pralines wrapped in brushed gold foil."
   }
 ];
