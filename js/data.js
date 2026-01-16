@@ -44,7 +44,7 @@ export const products = [
     tags: ["ruby", "fruity", "limited"],
     rating: 4.7,
     image:
-      "https://images.unsplash.com/photo-1599599810694-b5ac4dd64b57?w=800&q=80",
+      "https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=800&q=80",
     description: "Ruby cacao blended with passion fruit and raspberry purée for a bright, modern bite."
   },
   {
