@@ -137,7 +137,7 @@ function renderFeatured() {
 function renderCategoryChips() {
   const chips = qs("#category-chips");
   if (!chips) return;
-  const categories = Array.from(new Set(products.map((p) => p.category)));
+  const categories = ["All", ...new Set(products.map((p) => p.category))];
   chips.innerHTML = categories
     .map((c, idx) => `<button class="${idx === 0 ? "active" : ""}" data-cat="${c}">${c}</button>`)
     .join("");
