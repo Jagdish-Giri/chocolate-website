@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout - Midnight Chocolate 🍫</title>
+  <title>Maison Cacao | Checkout</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
   <!-- Navigation -->
   <nav class="nav">
     <div class="nav__wrapper">
-      <a href="index.html" class="nav__brand">🍫 Midnight Chocolate</a>
+      <a href="index.html" class="nav__brand">Maison Cacao</a>
       <div class="nav__links">
         <a href="index.html">Home</a>
         <a href="collection.html">Collection</a>
@@ -304,12 +304,13 @@
   <!-- Toast Notification -->
   <div id="toast" class="toast"></div>
 
-  <script src="js/data.js"></script>
-  <script src="js/app.js"></script>
+  <script type="module" src="js/app.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      window.renderCheckoutPage();
-    });
+    setTimeout(() => {
+      if (typeof window.renderCheckoutPage === 'function') {
+        window.renderCheckoutPage();
+      }
+    }, 100);
 
     document.getElementById('submitCheckout').addEventListener('click', () => {
       window.processCheckout();

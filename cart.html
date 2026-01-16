@@ -182,12 +182,13 @@
   <!-- Toast Notification -->
   <div id="toast" class="toast"></div>
 
-  <script src="js/data.js"></script>
-  <script src="js/app.js"></script>
+  <script type="module" src="js/app.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      window.renderCartPage();
-    });
+    setTimeout(() => {
+      if (typeof window.renderCartPage === 'function') {
+        window.renderCartPage();
+      }
+    }, 100);
 
     document.getElementById('checkoutBtn').addEventListener('click', () => {
       window.location.href = 'checkout.html';
