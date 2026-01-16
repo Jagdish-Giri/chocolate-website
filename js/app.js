@@ -84,42 +84,54 @@ window.updateCartQty = updateCartQty;
 function renderFeatured() {
   const grid = qs("#featured-grid");
   if (!grid) return;
-  const featured = products.slice(0, 6);
-  grid.innerHTML = featured
-    .map(
-      (p) => `
-      <article class="card" style="cursor: pointer;">
-        <a href="product.html?id=${p.id}" style="text-decoration: none; color: inherit;">
-          <img src="${p.image}" alt="${p.name}" loading="lazy" />
-          <h3>${p.name}</h3>
-          <p class="tiny">${p.description}</p>
-          <div class="meta">
-            <span>$${p.price}</span>
-            <span>${p.rating}★</span>
+  
+  function render(selectedCategory = null) {
+    let featured = products.slice(0, 6);
+    if (selectedCategory && selectedCategory !== "All") {
+      featured = featured.filter(p => p.category === selectedCategory);
+    }
+    
+    grid.innerHTML = featured
+      .map(
+        (p) => `
+        <article class="card" style="cursor: pointer;">
+          <a href="product.html?id=${p.id}" style="text-decoration: none; color: inherit;">
+            <img src="${p.image}" alt="${p.name}" loading="lazy" />
+            <h3>${p.name}</h3>
+            <p class="tiny">${p.description}</p>
+            <div class="meta">
+              <span>$${p.price}</span>
+              <span>${p.rating}★</span>
+            </div>
+            <div class="tagline">
+              ${p.tags
+                .slice(0, 3)
+                .map((t) => `<span class="tag">${t}</span>`)
+                .join("")}
+            </div>
+          </a>
+          <div class="hero__cta" style="margin-top:12px;">
+            <button class="pill" data-add="${p.id}">Add to Cart</button>
+            <a class="pill ghost" href="product.html?id=${p.id}">View Details</a>
           </div>
-          <div class="tagline">
-            ${p.tags
-              .slice(0, 3)
-              .map((t) => `<span class="tag">${t}</span>`)
-              .join("")}
-          </div>
-        </a>
-        <div class="hero__cta" style="margin-top:12px;">
-          <button class="pill" data-add="${p.id}">Add to Cart</button>
-          <a class="pill ghost" href="product.html?id=${p.id}">View Details</a>
-        </div>
-      </article>
-    `
-    )
-    .join("");
+        </article>
+      `
+      )
+      .join("");
 
-  grid.querySelectorAll("[data-add]").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      addToCart(btn.dataset.add);
+    grid.querySelectorAll("[data-add]").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        addToCart(btn.dataset.add);
+      });
     });
-  });
+  }
+  
+  render();
+  
+  // Store render function for category chips to use
+  window.renderFeaturedByCategory = render;
 }
 
 function renderCategoryChips() {
@@ -135,7 +147,10 @@ function renderCategoryChips() {
     if (e.target.matches("button[data-cat]")) {
       chips.querySelectorAll("button").forEach((b) => b.classList.remove("active"));
       e.target.classList.add("active");
-      scrollToSection("collections");
+      // Filter featured products by selected category
+      if (typeof window.renderFeaturedByCategory === 'function') {
+        window.renderFeaturedByCategory(e.target.dataset.cat);
+      }
     }
   });
 }
