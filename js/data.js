@@ -116,7 +116,7 @@ export const products = [
     tags: ["gift", "assortment", "luxury"],
     rating: 5,
     image:
-      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
+      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80",
     description: "Curated box of hazelnut, pistachio, and almond pralines wrapped in brushed gold foil."
   }
 ];
