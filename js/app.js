@@ -130,13 +130,10 @@ function renderCategoryChips() {
     .map((c, idx) => `<button class="${idx === 0 ? "active" : ""}" data-cat="${c}">${c}</button>`)
     .join("");
   
-  // Remove any existing listeners and re-attach
-  chips.replaceWith(chips.cloneNode(true));
-  const newChips = qs("#category-chips");
-  
-  newChips.addEventListener("click", (e) => {
+  // Use event delegation on the container
+  chips.addEventListener("click", (e) => {
     if (e.target.matches("button[data-cat]")) {
-      newChips.querySelectorAll("button").forEach((b) => b.classList.remove("active"));
+      chips.querySelectorAll("button").forEach((b) => b.classList.remove("active"));
       e.target.classList.add("active");
       scrollToSection("collections");
     }
@@ -213,13 +210,10 @@ function renderCollectionPage() {
     .map((c, idx) => `<button class="${idx === 0 ? "active" : ""}" data-cat="${c}">${c}</button>`)
     .join("");
 
-  // Remove any existing listeners and re-attach
-  chips.replaceWith(chips.cloneNode(true));
-  const newChips = qs("#filter-categories");
-  
-  newChips.addEventListener("click", (e) => {
+  // Use event delegation on the container
+  chips.addEventListener("click", (e) => {
     if (e.target.matches("button[data-cat]")) {
-      newChips.querySelectorAll("button").forEach((b) => b.classList.remove("active"));
+      chips.querySelectorAll("button").forEach((b) => b.classList.remove("active"));
       e.target.classList.add("active");
       render();
     }
@@ -238,7 +232,7 @@ function renderCollectionPage() {
   function render() {
     const term = search?.value?.toLowerCase() || "";
     const maxPrice = Number(price?.value || 100);
-    const activeCat = newChips?.querySelector(".active")?.dataset.cat || "All";
+    const activeCat = chips?.querySelector(".active")?.dataset.cat || "All";
     let list = products.filter((p) => p.price <= maxPrice);
     if (activeCat !== "All") list = list.filter((p) => p.category === activeCat);
     if (term) {
