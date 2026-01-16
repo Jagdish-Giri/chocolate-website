@@ -288,6 +288,8 @@ function renderCollectionPage() {
   render();
 }
 
+window.renderCollectionPage = renderCollectionPage;
+
 function scrollToSection(id) {
   const el = document.getElementById(id);
   if (!el) return;

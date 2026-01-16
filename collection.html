@@ -129,5 +129,15 @@
   </footer>
 
   <script type="module" src="js/app.js"></script>
+  <script>
+    setTimeout(() => {
+      if (typeof window.renderCollectionPage === 'function') {
+        window.renderCollectionPage();
+      }
+      if (typeof window.updateCartCount === 'function') {
+        window.updateCartCount();
+      }
+    }, 100);
+  </script>
 </body>
 </html>
